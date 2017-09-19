@@ -1,0 +1,86 @@
+@import "global/variables";
+@import "global/fonts";
+
+$orange: orange;
+$orange-dark: darken($orange, 12%);
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body.login {
+	background: #444444 url(../svg/pattern-chain-light.svg) repeat center;
+	background-size: 90px;
+}
+
+#login {
+
+	width: 400px;
+	padding-top: 0;
+
+	.message {
+		border-left-color: $orange;
+	}
+
+	h1 a {
+		width: 100%;
+		height: 180px;
+		background: $light-grey url(../svg/seegars-logo.svg) center center no-repeat;
+		background-size: contain;
+		border-radius: 3px;
+		margin: 40px auto 20px;
+	}
+
+	form {
+		background: $light-grey;
+		border-radius: 3px;
+
+		.input {
+			font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+			font-weight: 200;
+			font-size: 24px;
+			width: 97%;
+			padding: 3px;
+			margin-top: 2px;
+			margin-right: 6px;
+			margin-bottom: 16px;
+			background: #ffffff;
+		}
+	}
+  #backtoblog a,
+  #nav a {
+    color: white;
+	transition: 0.2s;
+
+	&:hover {
+		color: $orange;
+	}
+  }
+}
+
+//Overwrite the default Blue WP Login button
+#wp-submit {
+	background-color: $orange;
+	background-image: linear-gradient($orange, $orange-dark);
+	border: 1px solid $orange-dark;
+	border-bottom: 1px solid darken($orange-dark, 5%);
+	border-radius: 4px;
+	box-shadow: inset 0 1px 0 0 lighten($orange-dark, 40%);
+	color: #fff;
+	font: bold 11px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+	padding: 7px 0 8px 0;
+	text-align: center;
+	text-shadow: 0 -1px 0 darken($orange, 10%);
+	width: 40%;
+		&:hover {
+			background-color: darken($orange, 2%);
+			background-image: linear-gradient(darken($orange, 2%), darken($orange-dark, 2%));
+			box-shadow: inset 0 1px 0 0 lighten($orange-dark, 20%);
+			cursor: pointer;
+		}
+		&:active {
+			border: 1px solid #a3bcdb;
+			border-bottom: 1px solid #98bae3;
+			box-shadow: inset 0 0 8px 4px darken($orange, 10%), 0 1px 0 0 #eee;
+		}
+}

@@ -17,7 +17,7 @@ var imageminPngQuant = require('imagemin-pngquant');
 var config = {
 	browsersync: {
 		options: {
-			proxy: 'localhost:8888/',
+			proxy: 'localhost/',
 			notify: false
 		},
 		streamOptionsStyles: {
@@ -25,31 +25,31 @@ var config = {
 		}
 	},
 	styles: {
-		src: 'library/sass/**/*.scss',
-		dest: './',
+		src: 'wp-content/themes/XXXXXXXXXX/library/sass/**/*.scss',
+		dest: 'wp-content/themes/XXXXXXXXXX/library/css/',
 		sourcemapDest: '.', // i.e. current directory
 		options: {
 			sass: {
-				outputStyle: 'expanded', // nested, expanded, compact, compressed
-				precision: 10 // level of precision on numerical values (i.e. 10.0 vs 10.0000001)
+				outputStyle: 'compressed', // compressed, expanded, compact, compressed
+				precision: 5 // level of precision on numerical values (i.e. 10.0 vs 10.0000001)
 			},
 			autoprefixer: {
-				browsers: ['last 2 versions', '> 3%', 'Firefox ESR'],
+				browsers: ['last 2 versions', '> 3%', 'IE 9', 'Firefox ESR'],
 				cascade: false
 			}
 		}
 	},
 	scripts: {
-		src: 'library/js/*.js',
-		dest: 'library/js/min/',
+		src: 'wp-content/themes/XXXXXXXXXX/library/js/*.js',
+		dest: 'wp-content/themes/XXXXXXXXXX/library/js/min/',
 		sourcemapDest: '.', // i.e. current directory
 		rename: {
 			suffix: '-min'
 		}
 	},
 	img: {
-		src: 'library/img-src/**/*.{jpg,jpeg,png,gif,svg}',
-		dest: 'library/img/',
+		src: 'wp-content/uploads-src/2016/**/*.{jpg,jpeg,png,gif,svg}',
+		dest: 'wp-content/uploads/2016/',
 		options: {
 			use: [
 				imageminJpegRecompress({
@@ -85,7 +85,7 @@ gulp.task('styles', function() {
 	return gulp
 		.src(config.styles.src)
 		.pipe(sourcemaps.init())
-		//.pipe(sass(config.styles.options.sass).on('error', sass.logError))
+		.pipe(sass(config.styles.options.sass).on('error', sass.logError))
 		.pipe(sass(config.styles.options.sass).on('error', notify.onError({
 			title: 'Sass Compilation Error',
 			message: '<%= error.message %>'
@@ -93,22 +93,21 @@ gulp.task('styles', function() {
 		.pipe(autoprefixer(config.styles.options.autoprefixer))
 		.pipe(sourcemaps.write(config.styles.sourcemapDest))
 		.pipe(gulp.dest(config.styles.dest))
-		// .pipe(notify('Sass Compilation Complete'))
+		.pipe(notify('Sass Compilation Complete'))
 		.pipe(browserSync.stream(config.browsersync.streamOptionsStyles));
 });
 
 // JavaScript
 gulp.task('scripts', function() {
 	return gulp
-		// .pipe(uglify())
 		.src(config.scripts.src)
 		.pipe(sourcemaps.init())
 		.pipe(include()).on('error', console.log)
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(rename(config.scripts.rename))
 		.pipe(sourcemaps.write(config.scripts.sourcemapDest))
-		.pipe(gulp.dest(config.scripts.dest));
-		// .pipe(notify('JS Compilation Complete'));
+		.pipe(gulp.dest(config.scripts.dest))
+		.pipe(notify('JS Compilation Complete'));
 });
 
 // Images
@@ -124,7 +123,7 @@ gulp.task('watch', function() {
 	browserSync.init(config.browsersync.options);
 	gulp.watch(config.styles.src, ['styles']);
 	gulp.watch(config.scripts.src, ['scripts']);
-	gulp.watch('**/*.{php,js}').on('change', browserSync.reload);
+	gulp.watch('wp-content/themes/XXXXXXXXXX/**/*.{php,js}').on('change', browserSync.reload);
 });
 
 // Default Task

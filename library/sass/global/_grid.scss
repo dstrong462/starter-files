@@ -1,0 +1,67 @@
+// GRID SETTINGS
+// =============================================
+
+// Primary Breakpoints
+$bp-col4: 0;
+$bp-col8: 640px;
+$bp-col12: 960px;
+$bp-col16: 1280px;
+
+// Secondary Breakpoints (1px < primary)
+$bp-col4-max: $bp-col8 - 1;
+$bp-col8-max: $bp-col12 - 1;
+$bp-col12-max: $bp-col16 - 1;
+
+// Grid Settings
+$grid-columns: 12;
+$grid-max-width: $bp-col16;
+$grid-column-padding: 40px;
+
+.clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.float-right {
+    float: right;
+}
+
+// Base Row Settings
+.row {
+    @extend .clearfix;
+    width: 100%;
+    max-width: $grid-max-width;
+    text-align: left;
+    padding: 0;
+    margin: 0 auto;
+}
+
+// Base Column Settings
+[class^='col'] {
+    display: inline-block;
+    float: left;
+    padding: $grid-column-padding;
+    margin: 0;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Generate Columns
+@for $i from 1 through $grid-columns {
+    .col-#{$i},
+    .col-#{$i}-sm {
+        width: (100 / $grid-columns) * $i + %;
+    }
+}
+
+@media (max-width: $bp-col8) {
+    [class^='col'] {
+        width: 100%;
+    }
+}
