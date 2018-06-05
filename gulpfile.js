@@ -1,5 +1,3 @@
-// process.env.DISABLE_NOTIFIER = true;
-
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var notify = require('gulp-notify');
@@ -9,9 +7,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var include = require('gulp-include');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var imagemin = require('gulp-imagemin');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
-var imageminPngQuant = require('imagemin-pngquant');
 
 // Configuration
 var config = {
@@ -25,62 +20,37 @@ var config = {
 		}
 	},
 	styles: {
-		src: 'wp-content/themes/XXXXXXXXXX/library/sass/**/*.scss',
-		dest: 'wp-content/themes/XXXXXXXXXX/library/css/',
+		src: 'library/sass/**/*.scss',
+		dest: 'library/css/',
 		sourcemapDest: '.', // i.e. current directory
 		options: {
 			sass: {
-				outputStyle: 'compressed', // compressed, expanded, compact, compressed
-				precision: 5 // level of precision on numerical values (i.e. 10.0 vs 10.0000001)
+				outputStyle: 'compressed', // compressed, expanded, compact
+				precision: 5
 			},
 			autoprefixer: {
-				browsers: ['last 2 versions', '> 3%', 'IE 9', 'Firefox ESR'],
+				browsers: [	'last 2 Chrome versions',
+							'last 2 Edge versions',
+							'last 2 Firefox versions',
+							'last 2 iOS versions',
+							'last 2 Safari versions',
+							'> 2% in US',
+							'IE 11' ],
 				cascade: false
 			}
 		}
 	},
 	scripts: {
-		src: 'wp-content/themes/XXXXXXXXXX/library/js/*.js',
-		dest: 'wp-content/themes/XXXXXXXXXX/library/js/min/',
+		src: 'library/js/*.js',
+		dest: 'library/js/min/',
 		sourcemapDest: '.', // i.e. current directory
 		rename: {
 			suffix: '-min'
 		}
-	},
-	img: {
-		src: 'wp-content/uploads-src/2016/**/*.{jpg,jpeg,png,gif,svg}',
-		dest: 'wp-content/uploads/2016/',
-		options: {
-			use: [
-				imageminJpegRecompress({
-					accurate: true,
-					loops: 3,
-					min: 40,
-					max: 85
-				}),
-				imageminPngQuant()
-			],
-			svgoPlugins: [
-				{ removeXMLProcInst: true },
-				{ removeDoctype: true },
-				{ removeComments: true },
-				{ removeDimensions: true }, // removes dimensions in presence of viewBox
-				{ removeTitle: true },
-				{ removeStyleElement: true },
-				{ convertShapeToPath: true },
-				{ convertColors: {
-					 names2hex: true,
-					 rgb2hex: true
-				}},
-				{ cleanupNumericValues: {
-					floatPrecision: 2
-				}}
-			]
-		}
 	}
 };
 
-// Styles (CSS / Sass)
+// Styles (Sass > CSS)
 gulp.task('styles', function() {
 	return gulp
 		.src(config.styles.src)
@@ -93,7 +63,7 @@ gulp.task('styles', function() {
 		.pipe(autoprefixer(config.styles.options.autoprefixer))
 		.pipe(sourcemaps.write(config.styles.sourcemapDest))
 		.pipe(gulp.dest(config.styles.dest))
-		.pipe(notify('Sass Compilation Complete'))
+		// .pipe(notify('Sass Compilation Complete'))
 		.pipe(browserSync.stream(config.browsersync.streamOptionsStyles));
 });
 
@@ -110,20 +80,11 @@ gulp.task('scripts', function() {
 		.pipe(notify('JS Compilation Complete'));
 });
 
-// Images
-gulp.task('images', function() {
-	return gulp
-		.src(config.img.src)
-		.pipe(imagemin(config.img.options))
-		.pipe(gulp.dest(config.img.dest));
-});
-
 // Watcher
 gulp.task('watch', function() {
 	browserSync.init(config.browsersync.options);
 	gulp.watch(config.styles.src, ['styles']);
 	gulp.watch(config.scripts.src, ['scripts']);
-	gulp.watch('wp-content/themes/XXXXXXXXXX/**/*.{php,js}').on('change', browserSync.reload);
 });
 
 // Default Task

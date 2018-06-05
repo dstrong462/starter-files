@@ -1,9 +1,17 @@
 
 // ===== GENERAL STYLES
-// ================================================================================
-body, select, input, textarea {
+// ====================================================================
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	width: 100%;
 	color: $black;
-	font-weight: 500;
+	// To fix extra bold fonts in Firefox
+	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: none;
 	-webkit-backface-visibility: hidden;
@@ -12,79 +20,51 @@ body, select, input, textarea {
 	@include bp($bp-col12){ font-size: 98%; }
 	@include bp($bp-col16){ font-size: 100%; }
 	line-height: 1.625;
-}
-
-body {
 	background-color: #fff;
 	overflow-x: hidden;
-	position: relative;
-	width: 100%;
-
-	// We have a sticky header!!!!
-	padding-top: 130px;
-	@include bp($bp-col12){
-		padding-top: 154px;
-	}
-
-	&.scrolled {
-		padding-top: 70px;
-	}
 }
 
-::-moz-selection { color: #fff; background: #008752; }
 ::selection { color: #fff; background: #008752; }
-
-::-webkit-input-placeholder { color: #fff; }
-:-moz-placeholder {color: #fff; }
-::-moz-placeholder { color: #fff; }
-:-ms-input-placeholder { color: #fff; }
-
-*, *:after, *:before {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
 
 
 // ===== ANCHOR TEXT / LINKS
-// ================================================================================
+// ====================================================================
 
 
 
 // ===== HORIZONTAL LINE
-// ================================================================================
+// ====================================================================
 
 hr, .hr {
-	border: none;
+	width: 100%;
 	height: 1px;
 	background-color: rgba(#464646, 0.7);
+	border: none;
 	outline: none;
-	width: 100%;
 	margin: 25px 0;
 }
 
 
 // ===== IMAGES
-// ================================================================================
+// ====================================================================
 
 img {
+	display: block;
 	max-width: 100%;
 	height: auto;
-	vertical-align: middle;
-	display: block;
 	@include bp($bp-col8){
 		display: inline;
+		vertical-align: middle;
 	}
 }
 
 // ===== TYPOGRAPHY
-// ================================================================================
+// ====================================================================
 
 h1, h2, h3, h4, h5, h6 {
     color: $black;
-    text-transform: uppercase;
     letter-spacing: 1px;
 	line-height: 1.1;
+    text-transform: uppercase;
 	margin: 0 0 12px;
 }
