@@ -1,0 +1,52 @@
+
+// ===== GENERAL STYLES
+// ====================================================================
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	width: 100%;
+	color: $black;
+	// To fix extra bold fonts in Firefox
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: none;
+	-webkit-backface-visibility: hidden;
+	font-family: $font-sans-serif;
+	font-size: 93%;
+	@include bp($bp-col8){ font-size: 95%; }
+	@include bp($bp-col12){ font-size: 98%; }
+	@include bp($bp-col16){ font-size: 100%; }
+	background-color: #fff;
+	overflow-x: hidden;
+}
+
+::selection { color: #fff; background: $gold; }
+
+
+// HELPER ITEMS
+// ====================================================================
+
+.wrapper {
+	width: 100%;
+	max-width: $bp-col16;
+	padding: 0 10px;
+	margin: 0 auto;
+}
+
+
+//  IMAGES
+// ====================================================================
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	@include bp($bp-col8){
+		display: inline;
+		vertical-align: middle;
+	}
+}

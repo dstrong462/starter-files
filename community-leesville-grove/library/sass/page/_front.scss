@@ -1,0 +1,475 @@
+// HERO AREA
+// ===================================================
+
+.hero {
+    position: relative;
+    width: 100%;
+    background: url('../img/hero-slider-brown-home.jpg') 50% 30% no-repeat;
+    background-size: cover;
+    padding: 40px 0;
+
+    @include bp($bp-col8) {
+        padding-top: 60px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include bp($bp-col12) {
+            flex-direction: row;
+            height: 660px;
+        }
+    }
+    
+    // Blue overlay
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(#38616f, 0.37);
+    }
+
+    .content {
+        position: relative;
+        color: white;
+        text-align: center;
+        text-shadow: 1px 4px 8px rgba(black, 0.51);
+        margin-bottom: 40px;
+        opacity: 0;
+        animation: fadeInLeft 0.75s 0.5s forwards;
+        z-index: 1;
+
+        @include bp($bp-col12) {
+            margin-right: 60px;
+            margin-bottom: 0;
+        }
+
+        @include bp($bp-col16) {
+            margin-right: 120px;
+        }
+
+        .title {
+            font: 700 45px/0.95 $font-sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+
+            @include bp($bp-col8) {
+                font-size: 60px;
+            }
+
+            @include bp($bp-col12) {
+                font-size: 75px;
+            }
+        }
+
+        .subtitle {
+            font: 400 40px/1 $font-serif;
+            font-size: 30px;
+
+            @include bp($bp-col8) {
+                font-size: 38px;
+            }
+
+            sup {
+                top: -10px;
+                font-size: 60%;
+                line-height: 1;
+            }
+        }
+    }
+
+    form {
+        position: relative;
+        width: 100%;
+        max-width: 460px;
+        opacity: 0;
+        animation: fadeInRight 0.75s 0.5s forwards;
+        z-index: 1;
+
+        @include bp($bp-col12) {
+            margin: 0;
+        }
+    }
+}
+
+.promo-bar {
+    width: 100%;
+    color: white;
+    font: 700 20px/1.1 $font-sans-serif;
+    text-align: center;
+    background: $blue-light;
+    padding: 24px 0;
+
+    @include bp($bp-col12) {
+        font-size: 25px;
+    }
+}
+
+
+// INTRO CONTENT AREA
+// ===================================================
+
+.intro-content {
+    text-align: center;
+    padding: 40px 0;
+    
+    @include bp($bp-col8) {
+        padding: 60px 0;
+    }
+
+    .wrapper {
+        max-width: 1010px;
+    }
+
+    .title {
+        color: $blue;
+        font: 400 35px/1 $font-serif;
+
+        @include bp($bp-col8) {
+            font-size: 45px;
+        }
+    }
+
+    .subtitle {
+        color: $blue;
+        font: 700 36px/0.9 $font-sans-serif;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+
+        @include bp($bp-col8) {
+            font-size: 55px;
+        }
+    }
+
+    .title-info {
+        position: relative;
+        color: $gold;
+        font: 700 22px/1 $font-sans-serif;
+        padding-bottom: 26px;
+        margin-bottom: 30px;
+        
+        @include bp($bp-col8) {
+            font-size: 30px;
+            margin-bottom: 45px;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 174px;
+            height: 6px;
+            background: $blue;
+        }
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+
+// FEATURES AREA
+// ===================================================
+
+.features {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: $blue;
+
+    @include bp($bp-col12) {
+        flex-direction: row;
+    }
+
+    .image {
+        display: none;
+        width: 100%;
+        height: 330px;
+        background: $blue url('../img/img-kitchen-chairs.jpg') center no-repeat;
+        background-size: cover;
+        
+        @include bp($bp-col8) {
+            display: block;
+        }
+
+        @include bp($bp-col12) {
+            width: 40%;
+        }
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 35px 20px;
+
+        @include bp($bp-col8) {
+            flex-wrap: nowrap;
+            padding: 40px 0;
+        }
+
+        @include bp($bp-col12) {
+            justify-content: space-around;
+            width: 60%;
+        }
+
+        .icon-col {
+            flex: 1 1 33.333%;
+            max-width: 150px;
+            color: white;
+            font: 700 17px/1.3 $font-sans-serif;
+            text-align: center;
+            padding: 0 10px 30px 10px;
+            
+            &:last-of-type {
+                padding-bottom: 0;
+            }
+            
+            @include bp($bp-col8) {
+                max-width: 170px;
+                font-size: 20px;
+                padding-bottom: 0;
+                margin: 0 15px;
+            }
+
+            @include bp($bp-col16) {
+                font-size: 22px;
+            }
+
+            .icon {
+                width: 120px;
+                height: 120px;
+                background: $gold;
+                border-radius: 50%;
+                padding: 25px;
+                margin: 0 auto 20px auto;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                    fill: white;
+                }
+            }
+        }
+    }
+}
+
+
+// LOCATION AREA
+// ===================================================
+
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: $blue-lighter;
+
+    @include bp($bp-col12) {
+        position: relative;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .content {
+        width: 100%;
+        text-align: center;
+        padding: 40px 10px;
+
+        @include bp($bp-col12) {
+            width: 50%;
+            padding: 60px 60px;
+        }
+
+        @include bp($bp-col16) {
+            padding: 90px 100px;
+        }
+
+        .title {
+            color: $gold;
+            font:35px/0.9 $font-serif;
+            margin-bottom: 20px;
+
+            @include bp($bp-col8) {
+                font-size: 45px;
+            }
+        }
+
+        p {
+            max-width: 550px;
+            color: $grey;
+            text-align: center;
+            margin: 0 auto 15px auto;
+
+            &:last-of-type {
+                margin-bottom: 30px;
+                @include bp($bp-col8) {
+                    margin-bottom: 40px;
+                }
+            }
+        }
+    }
+
+    .map {
+        width: 100%;
+        height: 300px;
+        background: url('../img/img-map.jpg') top no-repeat;
+        background-size: auto 150%;
+
+        @include bp($bp-col8) {
+            height: 400px;
+            background-size: cover;
+        }
+
+        @include bp($bp-col12) {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+        }
+    }
+}
+
+
+// FOOTER FORM AREA
+// ===================================================
+
+.footer-form-block {
+    position: relative;
+    width: 100%;
+    background: url('../img/img-house-footer.jpg') center no-repeat;
+    background-size: cover;
+    padding: 40px 0;
+
+    .wrapper {
+        max-width: 500px;
+
+        @include bp($bp-col8) {
+            max-width: $bp-col16;
+        }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba($blue, 0.86);
+        z-index: 0;
+    }
+
+    .content-row {
+        position: relative;
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+        z-index: 1;
+
+        @include bp($bp-col8) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @include bp($bp-col12) {
+            width: 72%;
+            margin-left: auto;
+            margin-right: 25px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 20px auto;
+
+            @include bp($bp-col8) {
+                flex: 1 0 auto;
+                margin: 0 40px 0 0;
+            }
+            
+            @include bp($bp-col12) {
+                max-width: 225px;
+                margin-right: 75px;
+            }
+        }
+
+        .title {
+            font: 700 26px/1 $font-sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+
+            @include bp($bp-col8) {
+                font-size: 30px;
+                text-align: left;
+            }
+        }
+
+        p {
+            color: white;
+            line-height: 1.5;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @include bp($bp-col8) {
+                font-size: 18px;
+                text-align: left;
+            }
+        }
+    }
+
+    .footer-form {
+        position: relative;
+        max-width: 500px;
+        background: none;
+        z-index: 1;
+
+        @include bp($bp-col12) {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: none;
+
+            .form-row {
+                flex: 1 1 auto;
+                width: 25%;
+                padding-right: 20px;
+
+                textarea {
+                    height: 62px;
+                    padding-right: 0;
+                }
+
+                // Submit Button
+                &.submit {
+                    padding: 0;
+                    margin-top: 22px;
+
+                    .btn {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+}

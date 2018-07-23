@@ -1,0 +1,117 @@
+// HEADER
+// ===================================================
+
+.header {
+    position: relative;
+    width: 100%;
+    background: white;
+    overflow: visible;
+    padding: 10px 0 6px 0;
+    z-index: 10;
+
+    @include bp($bp-col12) {
+        padding: 15px 0;
+    }
+
+    .wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1120px;
+        overflow: visible;
+        
+        @include bp($bp-col8) {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 155px;
+            height: auto;
+            margin-bottom: 15px;
+            
+            @include bp($bp-col8) {
+                position: absolute;
+                bottom: 0;
+                left: 18px;
+                transform: translateY(40%);
+                max-width: 215px;
+                background: white;
+                outline: 1px solid white;
+                outline-offset: 8px;
+                padding: 10px; 
+                margin: 0;
+            }
+            
+            @include bp($bp-col12) {
+                transform: translateY(69%);
+                max-width: 305px;
+                padding: 20px;
+            }
+        }
+
+        .phone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding:0;
+
+            @include bp($bp-col8) {
+               // align-items: flex-end;
+               flex-direction: row;
+            }
+            
+            @include bp($bp-col12) {
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            
+            img {
+	            max-width:85px;
+	             @include bp($bp-col8) {
+		             max-width:70px;
+		         }
+            }
+
+            .text {
+                color: $blue;
+                font:25px/1 $font-sans-serif;
+                display:none;
+                @include bp($bp-col8) {
+                    font-size: 30px;
+                    display:none;
+                }
+                @include bp($bp-col12) {
+                    font-size: 30px;
+                      display:block;
+                    
+                }
+            }
+
+            .number {
+                color: $gold;
+                font: 700 34px/1 $font-sans-serif;
+                text-decoration: none;
+                transition: color 0.2s;
+				display:none;
+				
+                &:hover {
+                    color: $gold-light;
+                }
+
+                @include bp($bp-col8) {
+                    font-size: 37px;
+                    display:block;
+                }
+                
+                @include bp($bp-col12) {
+                    font-size: 43px;
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+}

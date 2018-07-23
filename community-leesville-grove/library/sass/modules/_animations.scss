@@ -1,0 +1,79 @@
+// STATIC ANIMATIONS
+// ===================================================
+
+// Reveal from the left
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-75px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// Reveal from the right
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(75px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+// LAZYLOADED ANIMATIONS
+// ===================================================
+
+.animate {
+    transition: all 0.75s ease;
+
+    // Reveal from top
+    &.from-top {
+        opacity: 0;
+        transform: translateY(-35px);
+
+        &.lazyloaded {
+            opacity: 1;
+            transform: translateY(0)
+        }
+    }
+
+    // Reveal from bottom
+    &.from-bottom {
+        opacity: 0;
+        transform: translateY(35px);
+
+        &.lazyloaded {
+            opacity: 1;
+            transform: translateY(0)
+        }
+    }
+
+    // Reveal from left
+    &.from-left {
+        opacity: 0;
+        transform: translateX(-35px);
+
+        &.lazyloaded {
+            opacity: 1;
+            transform: translateX(0)
+        }
+    }
+
+    // Reveal from right
+    &.from-right {
+        opacity: 0;
+        transform: translateX(35px);
+
+        &.lazyloaded {
+            opacity: 1;
+            transform: translateX(0)
+        }
+    }
+
+}

@@ -1,0 +1,140 @@
+// FORM STYLES
+// ===================================================
+
+form {
+    background: rgba(#38616f, 0.8);
+    border-radius: 7px;
+    margin: 0 auto;
+
+    .form-header {
+        width: 100%;
+        color: white;
+        font: 400 28px/1 $font-serif;
+        text-align: center;
+        background: $blue-light;
+        border-radius: 7px 7px 0 0;
+        padding: 15px 15px 20px 15px;
+		
+        @include bp($bp-col8) {
+            font-size: 33px;
+        }
+    }
+
+    .form-content {
+        padding: 15px 10px;
+        
+        @include bp($bp-col8) {
+            padding: 22px 17px 25px 17px;
+        }
+    }
+
+    .form-row {
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+
+        @include bp($bp-col12) {
+            margin-bottom: 14px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &.textarea {
+            label {
+                text-transform: none;
+            }
+        }
+
+        // 50/50 split rows
+        &.split {
+            @include bp($bp-col8) {
+                display: flex;
+                flex-direction: row;
+                .form-row {
+                    margin: 0;
+                    &:first-of-type {
+                        margin-right: 14px;
+                    }
+                }
+            }
+        }
+
+        // Active state for labels
+        &.active {
+            label {
+                top: 7px;
+                color: $grey;
+                font-size: 85%;
+            }
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 18px;
+        left: 14px;
+        color: #0c0708;
+        font: 400 15px/1 $font-sans-serif;
+        text-transform: uppercase;
+        transition: color 0.2s, font-size 0.2s, top 0.2s;
+
+        @include bp($bp-col12) {
+            top: 20px;
+            left: 18px;
+            font-size: 18px;
+        }
+    }
+
+    .input-txt {
+        width: 100%;
+        background: white;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        padding: 25px 14px 9px 14px;
+        transition: background 0.2s;
+        
+        @include bp($bp-col12) {
+            padding: 30px 18px 14px 18px;
+        }
+
+        &:hover {
+            background: darken(white, 5%);
+        }
+    }
+
+    textarea.input-txt {
+        height: 82px;
+    }
+
+    .btn {
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .errors {
+        color: $red;
+        font-size: 15px;
+        line-height: 1.4;
+        text-align: left;
+        background-color: lighten($red, 33%);
+        list-style-type: square;
+        border-radius: 3px;
+        padding: 12px 12px 12px 30px;
+        margin: 0;
+    }
+
+    .thank-you {
+        color: white;
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+        padding: 5px;
+
+        @include bp($bp-col8) {
+            font-size: 17px;
+        }
+    }
+}

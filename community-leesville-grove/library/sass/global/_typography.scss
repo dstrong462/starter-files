@@ -1,0 +1,25 @@
+// ===== FONT STYLES
+// ====================================================================
+
+// These fonts are all being loaded through TypeKit
+
+$font-sans-serif: "source-sans-pro", Helvetica, Arial, sans-serif;
+// Weights: Regular 400, Bold 700
+
+$font-serif: "Playfair Display", serif;
+// Weights: Regular 400
+
+
+p {
+    color: $black;
+    font: 400 16px/1.75 $font-sans-serif;
+    margin-top: 0;
+
+    @include bp($bp-col12) {
+        font-size: 18px;
+    }
+
+    @include bp($bp-col12) {
+        font-size: 20px;
+    }
+}

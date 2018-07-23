@@ -1,0 +1,18 @@
+// Global Styles
+@import "global/normalize";
+@import "global/variables";
+@import "global/mixins";
+@import "global/typography";
+@import "global/base";
+
+// Modules
+@import "modules/animations";
+@import "modules/buttons";
+@import "modules/forms";
+
+// Sections
+@import "sections/header";
+@import "sections/footer";
+
+// Page
+@import "page/front";

@@ -1,0 +1,23 @@
+{
+  "name": "leesville-grove",
+  "version": "1.0.0",
+  "description": "newhomes.terramorhomes.com/community-leesville-grove",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-include": "latest",
+    "gulp-notify": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglify": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TriMark Digital",
+  "license": "ISC"
+}
