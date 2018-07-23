@@ -1,0 +1,70 @@
+
+// ===== GENERAL STYLES
+// ====================================================================
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	width: 100%;
+	color: $black;
+	// To fix extra bold fonts in Firefox
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: none;
+	-webkit-backface-visibility: hidden;
+	font-size: 93%;
+	@include bp($bp-col8){ font-size: 95%; }
+	@include bp($bp-col12){ font-size: 98%; }
+	@include bp($bp-col16){ font-size: 100%; }
+	line-height: 1.625;
+	background-color: #fff;
+	overflow-x: hidden;
+}
+
+::selection { color: #fff; background: #008752; }
+
+
+// ===== ANCHOR TEXT / LINKS
+// ====================================================================
+
+
+
+// ===== HORIZONTAL LINE
+// ====================================================================
+
+hr, .hr {
+	width: 100%;
+	height: 1px;
+	background-color: rgba(#464646, 0.7);
+	border: none;
+	outline: none;
+	margin: 25px 0;
+}
+
+
+// ===== IMAGES
+// ====================================================================
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	@include bp($bp-col8){
+		display: inline;
+		vertical-align: middle;
+	}
+}
+
+// ===== TYPOGRAPHY
+// ====================================================================
+
+h1, h2, h3, h4, h5, h6 {
+    color: $black;
+    letter-spacing: 1px;
+	line-height: 1.1;
+    text-transform: uppercase;
+	margin: 0 0 12px;
+}
