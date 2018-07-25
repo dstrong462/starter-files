@@ -40,16 +40,7 @@
             'wordpress'
 		),
         'email' => array(
-            'to' => array(
-                'info@terramorhomes.com',
-                'kristy.pollard@terramorhomes.com',
-                'sharon.bott@terramorhomes.com',
-                'kellie@trimarkdigital.com',
-                'terramorhomesbuilder@gmail.com',
-            ),
-            'from_name' => 'Terramor Homes',
-            'from_email' => 'noreply@trimarkleads.com',
-            'url' => '?thank_you=true'
+            'to' => 'info@terramorhomes.com, kristy.pollard@terramorhomes.com, sharon.bott@terramorhomes.com, kellie@trimarkdigital.com, terramorhomesbuilder@gmail.com'
         )
     );
 
@@ -115,10 +106,13 @@
         // If data passes validation, then proceed to mail processing
         if (form_is_valid()) {
 
-            // Set up the form for mailing
-            $to = $form['email']['to'];
-            $from_name = $form['email']['from_name'];
-            $from_email = $form['email']['from_email'];
+            // Format recipients for Mandrill
+            $recipients = [];
+            foreach (explode(',', $form['email']['to']) as $to) {
+                $recipients[] = array(
+                    'email' => $to
+                );
+            }
 
             $subject = "Leesville Grove Contact Form";
 
@@ -130,18 +124,32 @@
             $body .= "\n\n\n";
             $body .= "-- End of Message. (" . date('m/d/Y') . ")";
 
-            $header = 'From: ' . $from_name . ' <' . $from_email . '>' . "\r\n";
-            $header .= "Reply-To: " . $from_email . "\r\n";
-            $header .= "X-Mailer: PHP/" . phpversion();
+            // Set up data for sending through Mandrill
+            $mandrill_params = array(
+                "key" => "j8pH1k-ExFm5TtEMPRCyLQ",
+                "message" => array(
+                    "text" => $body,
+                    "to" => $recipients,
+                    "from_name" => "Terramor Homes",
+                    "from_email" => "noreply@trimarkleads.com",
+                    "subject" => $subject
+                )
+            );
 
-            // Loop through recipients list and mail
-            foreach ($to as $recipient) {
-                try {
-                    mail($recipient, $subject, $body, $header);
-                } catch (Exception $e) {
-                    echo '<pre>'.print_r($e, 1).'</pre>';
-                }
-            }
+            // Send the messages
+            $post_string = json_encode($mandrill_params);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://mandrillapp.com/api/1.0/messages/send.json');
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false );
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+
+            // This is the executable curl statement that will send the emails
+            $mandrill_result = curl_exec($ch);
+
 
             // Integration with MailChimp
     		if (!empty($form['input']['user_email'])) {
@@ -162,7 +170,7 @@
     		}
 
             // Redirect user to the thank you url
-            header("Location:" . $form['email']['url']);
+            header("Location:?thank_you=true");
             exit;
         }
     }
