@@ -40,7 +40,7 @@
             'wordpress'
 		),
         'email' => array(
-            'to' => 'info@terramorhomes.com, kristy.pollard@terramorhomes.com, sharon.bott@terramorhomes.com, kellie@trimarkdigital.com, terramorhomesbuilder@gmail.com'
+            'to' => 'info@terramorhomes.com, sharon.bott@terramorhomes.com, reid.byers@terramorhomes.com, kellie@trimarkdigital.com, terramorhomesbuilder@gmail.com'
         )
     );
 
