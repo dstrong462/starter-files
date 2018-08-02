@@ -23,6 +23,21 @@
                 $_SESSION['src'] = 'Organic';
                 break;
         }
+    }
+
+    // Get the utm source for subject line customization
+    if ($_GET['utm_medium']) {
+
+        $utm = htmlspecialchars(stripslashes(trim($_GET['utm_medium'])), ENT_QUOTES);
+
+        switch($utm) {
+            case 'email':
+                $_SESSION['src'] = 'Email';
+                break;
+            default:
+                $_SESSION['src'] = 'Email';
+                break;
+        }
 
     }
 
