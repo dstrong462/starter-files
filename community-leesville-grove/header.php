@@ -7,6 +7,25 @@
 
     $_SESSION['phone'] = ($_GET['thank_you'] ? $phone_non_tracking : $phone_tracking);
 
+    // Get the source for subject line customization
+    if ($_GET['src']) {
+
+        $src = htmlspecialchars(stripslashes(trim($_GET['src'])), ENT_QUOTES);
+
+        switch($src) {
+            case 'f':
+                $_SESSION['src'] = 'Facebook';
+                break;
+            case 'g':
+                $_SESSION['src'] = 'Google';
+                break;
+            default:
+                $_SESSION['src'] = 'Organic';
+                break;
+        }
+
+    }
+
     // Initialize the form data
     $form = array(
         'input' => array(),
@@ -114,7 +133,11 @@
                 );
             }
 
-            $subject = "Leesville Grove Contact Form";
+            if (!isset($_SESSION['src'])) {
+                $_SESSION['src'] = 'Organic';
+            }
+
+            $subject = $_SESSION['src'] . ' Contact Form for Leesville Grove';
 
             // Create the body of the email
             $body = "NAME:  " . $form['input']['user_name'] . "\r\n";
